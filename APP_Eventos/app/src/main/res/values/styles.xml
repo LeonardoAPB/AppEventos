@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<style name="AppTheme.DateTimePicker" parent="ThemeOverlay.MaterialComponents.Dialog">
+<item name="colorPrimary">#1A237E</item>
+<item name="colorAccent">#1A237E</item>
+<item name="android:colorControlActivated">#1A237E</item>
+<item name="android:headerBackground">#1A237E</item>
+<item name="buttonBarPositiveButtonStyle">@style/DatePickerButtonStyle</item>
+<item name="buttonBarNegativeButtonStyle">@style/DatePickerButtonStyle</item>
+</style>
+
+<style name="DatePickerButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+<item name="android:textColor">#1A237E</item>
+</style>
+</resources>
