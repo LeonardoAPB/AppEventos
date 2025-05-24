@@ -15,6 +15,10 @@ class PasswordReset2Activity : AppCompatActivity() {
     private lateinit var newPasswordEditText: EditText
     private lateinit var confirmPasswordEditText: EditText
     private lateinit var confirmButton: Button
+    private lateinit var eyeImageViewNew: android.widget.ImageView
+    private lateinit var eyeImageViewConfirm: android.widget.ImageView
+    private var isNewPasswordVisible = false
+    private var isConfirmPasswordVisible = false
     private lateinit var db: FirebaseFirestore
     private var userEmail: String? = null
 
@@ -26,6 +30,34 @@ class PasswordReset2Activity : AppCompatActivity() {
         newPasswordEditText = findViewById(R.id.newPasswordEditText)
         confirmPasswordEditText = findViewById(R.id.confirmPasswordEditText)
         confirmButton = findViewById(R.id.confirmButton)
+
+        eyeImageViewNew = findViewById(R.id.eyeImageViewNew)
+        eyeImageViewConfirm = findViewById(R.id.eyeImageViewConfirm)
+
+        eyeImageViewNew.setOnClickListener {
+            isNewPasswordVisible = !isNewPasswordVisible
+            if (isNewPasswordVisible) {
+                newPasswordEditText.inputType = android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                eyeImageViewNew.setImageResource(R.drawable.ic_eye_on)
+            } else {
+                newPasswordEditText.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+                eyeImageViewNew.setImageResource(R.drawable.ic_eye_off)
+            }
+            newPasswordEditText.setSelection(newPasswordEditText.text.length)
+        }
+
+        eyeImageViewConfirm.setOnClickListener {
+            isConfirmPasswordVisible = !isConfirmPasswordVisible
+            if (isConfirmPasswordVisible) {
+                confirmPasswordEditText.inputType = android.text.InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD
+                eyeImageViewConfirm.setImageResource(R.drawable.ic_eye_on)
+            } else {
+                confirmPasswordEditText.inputType = android.text.InputType.TYPE_CLASS_TEXT or android.text.InputType.TYPE_TEXT_VARIATION_PASSWORD
+                eyeImageViewConfirm.setImageResource(R.drawable.ic_eye_off)
+            }
+            confirmPasswordEditText.setSelection(confirmPasswordEditText.text.length)
+        }
+
         db = FirebaseFirestore.getInstance()
 
         userEmail = intent.getStringExtra("email")
